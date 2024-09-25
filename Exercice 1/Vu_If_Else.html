@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app"> Mon rang est {{rang}}, ma médaille :
+        <span v-if="rang == 1">Or</span>
+        <span v-else-if="rang == 2">Argent</span>
+        <span v-else-if="rang == 3">Bronze</span>
+        <span v-else>Aucune</span>
+    </div>
+
+    <script type="text/javascript">
+        new Vue({
+            el: "#app",
+            data: {
+                rang: 0
+            }
+        });
+    </script>
+
+</body>
+
+</html>

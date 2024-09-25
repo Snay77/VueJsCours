@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+
+<!-- 
+Il faut que dans mon input quand je marque de 10 à 1 c'est noir, en dessous de 1 c'est rouge
+Utiliser Blind:class pour le rouge
+Prévoir variable contenant le nombre de caractères autorisés à la saisie
+Utiliser une propriété calculée (computed) pour le compteur 
+-->
+
+<body>
+    <div id="app">
+        <p>Entre ton nom:</p>
+        <input v-model="message" placeholder="Ecrit ton nom" />
+        <p>Ton nom est : {{ message }}</p>
+    </div>
+
+    <script type="text/javascript">
+        new Vue({
+            el: "#app",
+            data: {
+                message: ""
+            }
+        });
+    </script>
+
+</body>
+
+</html>
