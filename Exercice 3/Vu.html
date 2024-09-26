@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <title>Document</title>
+    <style>
+        .red {
+            text-decoration: line-through;
+            font-weight: bold;
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- App1, quand c'est rouge les caractères on dépassé 10 -->
+
+    <div id="app1">
+        <p>Il te reste <span v-bind:class="{ red: nbCaractereRestants <= 0 }">{{nbCaractereMax}}</span> caractère</p>
+        <input v-model="message" type="text" placeholder="Tape du texte" class="rouge">
+    </div>
+
+    <script type="text/javascript">
+        new Vue({
+            el: "#app1",
+            data: {
+                nbCaractereMax: 10,
+                message: ""
+            },
+            computed: {
+                nbCaractereRestants: function () {
+                    return this.nbCaractereMax - this.message.length;
+                },
+            }
+        })
+    </script>
+
+
+    <!-- App2, quand les caractères on dépassé 10 popup -->
+
+    <div id="app2">
+        <p>Il te reste {{nbCaractereMax}} caractère</p>
+        <input @keypress="verif" v-model="message" type="text" placeholder="Tape du texte">
+    </div>
+
+    <script type="text/javascript">
+        new Vue({
+            el: "#app2",
+            data: {
+                nbCaractereMax: 10,
+                message: ""
+            },
+            methods: {
+                verif: function () {
+                    if (this.nbCaractereRestants <= 0) {
+                        alert("Plus de place")
+                    }
+                }
+            },
+            computed: {
+                nbCaractereRestants: function () {
+                    return this.nbCaractereMax - this.message.length;
+                },
+            }
+        })
+    </script>
+</body>
+
+</html>

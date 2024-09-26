@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- App1, quand c'est rouge les caractères on dépassé 10 -->
+
+    <div id="app1">
+        <p>Régions :</p>
+        <ol>
+            <li v-for="region in regions">
+                {{region}}
+            </li>
+        </ol>
+        <p>Départements :</p>
+        <ol>
+            <li v-for="departement in departements">
+                {{departement}}
+            </li>
+        </ol>
+    </div>
+
+    <script type="text/javascript">
+        new Vue({
+            el: "#app1",
+            data: {
+                data: [],
+                regions: [],
+                departements: []
+            },
+            mounted() {
+                this.afficherFrance();
+            },
+            methods: {
+                async afficherFrance() {
+                    const reponse = await fetch("https://static.data.gouv.fr/resources/departements-et-leurs-regions/20190815-175403/departements-region.json");
+                    this.data = await reponse.json();
+                    console.log(this.data);
+
+                    this.regions = this.data.map(item => item.region_name)
+                                             .filter((value, index, self) => self.indexOf(value) === index);
+
+                    this.departements = this.data.map(item => item.dep_name)
+                                                 .filter((value, index, self) => self.indexOf(value) === index);
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
