@@ -10,5 +10,11 @@ Directive
 https://fr.vuejs.org/api/built-in-directives.html
 
 
+npm install vue-cli -g
+
+
 Télécharger une coquille vide de Vu
 vue init webpack TestApli
+
+
+cd monprojet / npm install / npm run dev
